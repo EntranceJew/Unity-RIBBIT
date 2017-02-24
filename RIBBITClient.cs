@@ -9,7 +9,7 @@ public class RIBBITClient : MonoBehaviour {
     };
 
     private Dictionary<long, string> croakDict = new Dictionary<long, string>();
-    public List<string> croakUnordered = new List<string>();
+    private List<string> croakUnordered = new List<string>();
 
     void OnEnable() {
         StartCoroutine(Croak());

@@ -3,9 +3,8 @@ using UnityEngine.UI;
 
 [RequireComponent( typeof( RIBBITClient ) )]
 public class RIBBITClientExample : MonoBehaviour {
-    public Text tipText;
-
     private RIBBITClient client;
+    private Text tipText;
 
     void OnEnable() {
         client = this.GetComponent<RIBBITClient>();
@@ -18,19 +17,17 @@ public class RIBBITClientExample : MonoBehaviour {
         ui.AddComponent<CanvasGroup>();
 
         var txt = new GameObject( "Text" );
-
-        txt.transform.SetParent( ui.transform );
         var trt = txt.AddComponent<RectTransform>();
         trt.anchorMin = Vector2.zero;
         trt.anchorMax = Vector2.one;
         trt.sizeDelta = Vector2.zero;
         trt.offsetMax = new Vector2( Screen.width, Screen.height );
         trt.offsetMin = Vector2.zero;
-
         txt.AddComponent<CanvasRenderer>();
-
         tipText = txt.AddComponent<Text>();
         tipText.font = Resources.GetBuiltinResource<Font>( "Arial.ttf" );
+        txt.transform.SetParent( ui.transform );
+        tipText.text = "[Frog Tips Go Here: Click To Show]";
         tipText.alignment = TextAnchor.MiddleCenter;
         tipText.resizeTextForBestFit = true;
         tipText.resizeTextMinSize = 10;
@@ -38,7 +35,7 @@ public class RIBBITClientExample : MonoBehaviour {
         tipText.color = Color.black;
     }
 
-    public void GetTip() {
+    void GetTip() {
         tipText.text = client.FrogTip();
     }
 
